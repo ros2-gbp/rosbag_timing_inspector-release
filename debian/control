@@ -1,0 +1,12 @@
+Source: ros-rolling-rosbag-timing-inspector
+Section: misc
+Priority: optional
+Maintainer: "Jose Luis Blanco-Claraco" <joseluisblancoc@gmail.com>
+Build-Depends: debhelper (>= 9.0.0), libgl1-mesa-dev, libglfw3-dev, libglu1-mesa-dev, ros-rolling-ament-cmake, ros-rolling-rosbag2-cpp, ros-rolling-rosbag2-storage, ros-rolling-ros-workspace
+Homepage: https://index.ros.org/p/rosbag_timing_inspector/#rolling
+Standards-Version: 3.9.2
+
+Package: ros-rolling-rosbag-timing-inspector
+Architecture: any
+Depends: ${shlibs:Depends}, ${misc:Depends}, ros-rolling-rosbag2-cpp, ros-rolling-rosbag2-storage, ros-rolling-ros-workspace
+Description: GUI tool to visualize and analyze message timing from ROS2 bags (mcap or db3).
