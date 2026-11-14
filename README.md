@@ -1,3 +1,26 @@
+## rosbag_timing_inspector (humble) - 1.1.1-1
+
+The packages in the `rosbag_timing_inspector` repository were released into the `humble` distro by running `/usr/bin/bloom-release --rosdistro humble --track humble --no-web rosbag_timing_inspector` on `Sat, 14 Nov 2026 22:41:10 -0000`
+
+The `rosbag_timing_inspector` package was released.
+
+Version of package(s) in repository `rosbag_timing_inspector`:
+
+- upstream repository: https://github.com/MOLAorg/rosbag_timing_inspector.git
+- release repository: https://github.com/ros2-gbp/rosbag_timing_inspector-release.git
+- rosdistro version: `1.0.1-1`
+- old version: `1.1.0-1`
+- new version: `1.1.1-1`
+
+Versions of tools used:
+
+- bloom version: `0.14.4`
+- catkin_pkg version: `1.1.1`
+- rosdep version: `0.27.0`
+- rosdistro version: `1.1.0`
+- vcstools version: `0.1.42`
+
+
 ## rosbag_timing_inspector (rolling) - 1.1.0-1
 
 The packages in the `rosbag_timing_inspector` repository were released into the `rolling` distro by running `/usr/bin/bloom-release --rosdistro rolling --track rolling --no-web rosbag_timing_inspector` on `Sat, 14 Nov 2026 22:28:12 -0000`
