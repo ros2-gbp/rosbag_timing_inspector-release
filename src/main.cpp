@@ -12,6 +12,7 @@
 
 #include <GLFW/glfw3.h>
 
+#include <algorithm>
 #include <cstdio>
 #include <string>
 
@@ -38,6 +39,21 @@ int main(int argc, char** argv)
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 0);
 
+    // UI scaling factor for high dpi monitors. Window hints only apply to
+    // windows created after them, so this goes before glfwCreateWindow().
+    float dpi_scaling_factor = 1.0f;
+    if (GLFWmonitor* monitor = glfwGetPrimaryMonitor(); monitor != nullptr)
+    {
+        float xscale = 1.0f;
+        float yscale = 1.0f;
+        glfwGetMonitorContentScale(monitor, &xscale, &yscale);
+        if (xscale > 1.0f || yscale > 1.0f)
+        {
+            dpi_scaling_factor = std::max(xscale, yscale);
+            glfwWindowHint(GLFW_SCALE_TO_MONITOR, GLFW_TRUE);
+        }
+    }
+
     GLFWwindow* window = glfwCreateWindow(
         1400, 900, "rosbag2 Timing Inspector", nullptr, nullptr);
     if (window == nullptr)
@@ -56,6 +72,11 @@ int main(int argc, char** argv)
     io.ConfigFlags |= ImGuiConfigFlags_NavEnableKeyboard;
 
     ImGui::StyleColorsDark();
+    // Apply dpi scaling factor to ImGui style and default font
+    ImGui::GetStyle().ScaleAllSizes(dpi_scaling_factor);
+    ImFontConfig config;
+    config.SizePixels = 13.0f * dpi_scaling_factor;
+    ImGui::GetIO().Fonts->AddFontDefault(&config);
 
     ImGui_ImplGlfw_InitForOpenGL(window, true);
     ImGui_ImplOpenGL3_Init(glsl_version);
@@ -65,6 +86,8 @@ int main(int argc, char** argv)
     {
         app.load_bag(initial_bag_path);
     }
+
+    app.set_dpi_scaling_factor(dpi_scaling_factor);
 
     while (!glfwWindowShouldClose(window) && !app.wants_quit())
     {
